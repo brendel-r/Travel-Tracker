@@ -1,3 +1,40 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  margin: 0;
+  padding: 0;
 }
+
+header {
+border: 5px solid aqua;
+height: 20vh;
+display: flex;
+justify-content: space-around;
+padding-top: 20px;
+
+}
+/* 
+userInfo {
+  display: flex;
+} */
+
+img {
+  height: 95%;
+}
+
+body {
+  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  border: 5px solid yellow;
+  height: 100%;
+}
+
+article {
+  border: 5px solid red;
+  height: 77vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+p {
+  border: 5px solid blue;
+  width: 40% ;
+}
+
