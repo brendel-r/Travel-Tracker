@@ -37,11 +37,6 @@ static getTravelerTrips(userID) {
 };
 
 
-  // Method to get the total cost of the trip
-getTotalCost(traveler) {
-    // return this.travelers * destination.costPerDay * this.duration;
-    // need to add 10% fee to this function
-  };
 
 };
 
