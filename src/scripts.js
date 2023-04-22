@@ -7,11 +7,11 @@ import  Trip from './Trip'
 // import dayjs from 'dayjs'
 
 
-// Queury Selectors
-// const welcomeUserDisplay = document.getElementById('welcome-user'),
-//       totalSpentDisplay = document.getElementById('total-spent'),
-//       upcomingTripsDisplay = document.getElementById('upcoming-trips'),
-//       pastTripsDisplay = document.getElementById('past-trips');
+Queury Selectors
+const welcomeUserDisplay = document.getElementById('welcome-user'),
+      totalSpentDisplay = document.getElementById('total-spent'),
+      upcomingTripsDisplay = document.getElementById('upcoming-trips'),
+      pastTripsDisplay = document.getElementById('past-trips');
 
 const destinations = [];
 

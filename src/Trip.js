@@ -23,18 +23,31 @@ getUserID() {
   return this.userID;
 }
 
+isApproved() {
+  return this.status === 'approved';
+}
+
 
 static getTravelerTrips(userID) {
-  debugger
   const results = Trip.allTrips.filter(trip => trip.getUserID() === userID)
-  console.log(results)
   results.forEach(trip => {
-    console.log(trip)
+    if(this?.upcoming === undefined) {
     this.upcoming = dayjs(trip.date).isAfter(dayjs());
-    console.log(this.upcoming)
+    }
   })
   return results
 };
+//  // Method to get the total cost of the trip
+getSingleTripCost(){
+  const dest = getDesinationByID(this.destinationID);
+  const travelerCount = this.travelers;
+  const duration = this.duration;
+
+  //calculate single trip cost and adds 10%
+  return (dest.getEstimatedFlightCostPerPerson() * travelerCount + 
+  dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
+}
+
 
 
 
