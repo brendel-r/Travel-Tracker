@@ -21,20 +21,7 @@ getName() {
   return this.name;
 }
 
- // Method to add a new trip to a traveler's list of trips
-// addTrip(trip) {
-
-//   }
-
- // Method to get a list of all the traveler's trips
-// getTrips(allTrips) {
-//   this.trips = allTrips.filter(trip => trip.userID === this.id)
-//   }
-
-// Method to get the total amount spent on trips by a traveler
-getTotalSpent() {
-
-  }
+ 
 }
 
 
