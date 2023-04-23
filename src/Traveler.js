@@ -1,3 +1,5 @@
+import Trip from './Trip';
+
 class Traveler {
   static allTravelers = []
   constructor({ id, name, travelerType }) {
@@ -21,22 +23,21 @@ class Traveler {
   }
 
   getTotalCost() {
-    return Trip.getTravelerTrips(this.id).filter(
-      trip => trip.isAppproved()).reduce((acc, currentTrip) =>
-        (acc + currentTrip.getSingleTripCost()), 0)
+    return Trip.getTravelerTrips(this.getID()).filter(
+      trip => trip.isApproved()).reduce((acc, currentTrip) =>
+      (acc + currentTrip.getSingleTripCost()), 0)
   };
 
-  // // Method to add a new trip to a traveler's list of trips
-  // addTrip(trip) {
+  static getRandomTraveler() {
+    return Traveler.allTravelers[Math.trunc(Math.random() * Traveler.allTravelers.length)]
+  }
 
-  //   }
-
-  // Method to get a list of all the traveler's trips
-  // getTrips(allTrips) {
-  //   this.trips = allTrips.filter(trip => trip.userID === this.id)
-  //   }
-
-  // Method to get the total amount spent on trips by a traveler
+  //using for debugging
+  static getTravelerByID(userID) {
+    return Traveler.allTravelers.find(traveler => {
+      return traveler.getID() === userID;
+    })
+  }
 }
 
 
