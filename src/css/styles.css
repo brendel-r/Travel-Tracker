@@ -4,28 +4,39 @@
 }
 
 body {
-  background: radial-gradient(circle, rgb(63, 248, 251) 0%, rgba(70, 213, 252, 0.345) 100%);
+  /* background: radial-gradient(circle, rgb(63, 248, 251) 0%, rgba(70, 213, 252, 0.345) 100%); */
+  background-image: url(https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-1200-80.jpg);
+   background-size: 100% ; 
     height: 100%;
 }
 
 /* header */
 header {
-border: 5px solid aqua;
 height: 20vh;
 display: flex;
 justify-content: space-around;
 padding-top: 20px;
-/* background-image: url(https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-1200-80.jpg); */
-/* background-size: 100% ; */
 
 }
 
 .userInfo { 
-  padding-top: 38px;
+  width: 40%;
+  background-color: rgb(250, 250, 250, .6);
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  border-radius: 30px;
+  border: 2px solid black;
+  padding-left: 20px;
 }
+
 
 .headerLogo {
   height: 95%;
+}
+
+.tripImage {
+  border-radius: 20px;
 }
 
 h1, h2 {
@@ -34,23 +45,48 @@ h1, h2 {
 
 /* body */
 article {
-  border: 5px dotted blue;
   padding: 20px;
   height: 77vh;
   display: flex;
   justify-content: space-around;
 }
 
-p {
-  border: 5px solid blue;
+/* .userTrips {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+} */
+
+.upcomingTrips, .pastTrips {
+  border: 2px solid black;
   width: 40% ;
   font-size: 40px;
+  overflow: auto;
+  border-radius: 30px;
+}
+.upcomingTrips > {
+  background-color: rgba(236, 184, 184, 0.6);
+
 }
 
-form {
-  height: 50vh;
-  border: 5px solid purple;
-  border-radius: 20px;
-  padding: 20px;
+.upcomingTrips > h4, .pastTrips > h4 {
+  text-align: center;
+  font-size:xx-large;
+  
 }
+.tripCard {
+  padding: 15px;
+  margin: 15px;
+  border: 2px solid black;
+  border-radius: 30px;
+  background-color: rgb(250, 250, 250, .8);
+  font-size: large;
+}
+
+.carRow{
+  display: flex;
+  flex-direction: row;
+}
+
 
