@@ -67,7 +67,7 @@ const createTripCard = (trip, targetDisplay) => {
   const image = destination.getImage();
   const alt = destination.getAlt();
 
-  const tripDate = dayjs(trip.getDate()).format('ddd - MM/DD/YYYY');
+  const tripDate = dayjs(trip.getDate()).format('ddd, MM/DD/YYYY');
   const duration = trip.getDuration();
   const travelerCount = trip.getTravelers();
 

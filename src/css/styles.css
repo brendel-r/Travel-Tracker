@@ -6,8 +6,19 @@
 
 body {
   background-image: url(https://cdn.wallpapersafari.com/86/13/9KfAMN.jpg);
-   background-size: 100% ; 
-    height: 100%;
+  background-size: 100% ; 
+  height: 100%;
+}
+
+dashboard {
+  visibility: visible;
+}
+
+article {
+  padding: 20px;
+  height: 77vh;
+  display: flex;
+  justify-content: space-around;
 }
 
 /* header */
@@ -17,7 +28,6 @@ display: flex;
 justify-content: space-around;
 padding-top: 20px;
 align-items: center;
-
 }
 
 .headerLogo {
@@ -29,7 +39,6 @@ align-items: center;
   height: 45px;
   border-radius: 15px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
 }
 
 .bookTrip:hover {
@@ -64,30 +73,26 @@ align-items: center;
 }
 
 
-
+/* trip display */
 .tripImage {
+  height: 100%;
   border-radius: 20px;
 }
 
-
-h1, h2 {
-  font-size: 40px;
+.cardRowInfo {
+  font-size: 22px;
+  padding: 10px;
 }
 
-/* body */
-article {
-  padding: 20px;
-  height: 77vh;
+.tripCard {
   display: flex;
-  justify-content: space-around;
+  padding: 15px;
+  margin: 15px;
+  border: 2px solid black;
+  border-radius: 30px;
+  background-color: rgb(250, 250, 250, .8);
+  font-size: large;
 }
-
-/* .userTrips {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-} */
 
 .upcomingTrips, .pastTrips {
   border: 2px solid black;
@@ -97,52 +102,35 @@ article {
   background-color: rgba(216, 212, 212, 0.6);
   border-radius: 30px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-.upcomingTrips > {
-  background-color: rgba(236, 184, 184, 0.6);
-
 }
 
 .upcomingTrips > h4, .pastTrips > h4 {
   text-align: center;
-  font-size:xx-large;
+  font-size: xx-large;
   
 }
-.tripCard {
-  padding: 15px;
-  margin: 15px;
+
+/* book trip form*/
+.dataEntry {
+  display: flex;
+  visibility: hidden; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  height: 50vh;
+  width: 50vw;
+  padding: 50px 0;
   border: 2px solid black;
   border-radius: 30px;
   background-color: rgb(250, 250, 250, .8);
-  font-size: large;
-}
-
-.carRow{
-  display: flex;
-  flex-direction: row;
-}
-
-.dataEntry {
-display: flex;
-visibility: hidden; 
-flex-direction: column;
-align-items: center;
-justify-content: space-around;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-margin: 0 auto;
-height: 50vh;
-width: 50vw;
-padding: 50px 0;
-border: 2px solid black;
-border-radius: 30px;
-background-color: rgb(250, 250, 250, .8);
-font-size: 30px;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+  font-size: 30px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  
 }
 
 .dataEntry input, .dataEntry button{
@@ -154,6 +142,3 @@ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   font-size: 20px;
 }
 
-dashboard {
-  visibility: visible;
-}
