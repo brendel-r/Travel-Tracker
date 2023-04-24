@@ -34,15 +34,19 @@ align-items: center;
   height: 110%;
 }
 
-.bookTrip {
-  font-size: 24px;
-  height: 45px;
+tripform button, .bookTrip {
+  font-size: 30px;
+  padding: 15px;
   border-radius: 15px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.bookTrip:hover {
+button:hover {
   background-color: lightskyblue;
+}
+
+.cancelButton:hover {
+  background-color: pink
 }
 
 .bookTrip > span {
@@ -84,6 +88,13 @@ align-items: center;
   padding: 10px;
 }
 
+.row {
+  display: flex;
+  width: 35%;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
 .tripCard {
   display: flex;
   padding: 15px;
@@ -112,8 +123,7 @@ align-items: center;
 
 /* book trip form*/
 .dataEntry {
-  display: flex;
-  visibility: hidden; 
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -141,4 +151,12 @@ align-items: center;
   width: 350px;
   font-size: 20px;
 }
+
+/* confirm form */
+
+#confirmTripForm, #addTripForm {
+  visibility: hidden;
+}
+
+
 
