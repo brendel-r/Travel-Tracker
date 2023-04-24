@@ -20,6 +20,26 @@ align-items: center;
 
 }
 
+.headerLogo {
+  height: 110%;
+}
+
+.bookTrip {
+  font-size: 24px;
+  height: 45px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+.bookTrip:hover {
+  background-color: lightskyblue;
+}
+
+.bookTrip > span {
+  padding: 15px;
+}
+
 .userInfo { 
   width: 50%;
   height: 75%;
@@ -33,39 +53,22 @@ align-items: center;
   border: 2px solid black;
   padding-left: 20px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
 }
 
-
-.headerLogo {
-  height: 110%;
-  
-}
-
-.bookTrip {
-  font-size: 24px;
-  height: 45px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-}
-.bookTrip:hover {
-  background-color: lightskyblue;
-}
-.bookTrip > span {
-  padding: 15px;
-}
-.tripImage {
-  border-radius: 20px;
+.welcomeUserDisplay {
+  font-size: 50px;
 }
 
 .totalMoneySpentDisplay {
   font-size:xx-large;
 }
 
-.welcomeUserDisplay {
-  font-size: 50px;
+
+
+.tripImage {
+  border-radius: 20px;
 }
+
 
 h1, h2 {
   font-size: 40px;
