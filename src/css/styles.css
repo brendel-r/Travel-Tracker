@@ -6,12 +6,8 @@
 
 body {
   background-image: url(https://cdn.wallpapersafari.com/86/13/9KfAMN.jpg);
-  background-size: 100% ; 
+  background-size: 100%;
   height: 100%;
-}
-
-dashboard {
-  visibility: visible;
 }
 
 article {
@@ -23,22 +19,23 @@ article {
 
 /* header */
 header {
-height: 20vh;
-display: flex;
-justify-content: space-around;
-padding-top: 20px;
-align-items: center;
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  align-items: center;
 }
 
 .headerLogo {
   height: 110%;
 }
 
-tripform button, .bookTrip {
+tripform button,
+.bookTrip {
   font-size: 30px;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover {
@@ -49,23 +46,23 @@ button:hover {
   background-color: pink
 }
 
-.bookTrip > span {
+.bookTrip>span {
   padding: 15px;
 }
 
-.userInfo { 
+.userInfo {
   width: 50%;
   height: 75%;
   background-color: rgb(250, 250, 250, .6);
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 30px;
   border: 2px solid black;
   padding-left: 20px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .welcomeUserDisplay {
@@ -73,7 +70,7 @@ button:hover {
 }
 
 .totalMoneySpentDisplay {
-  font-size:xx-large;
+  font-size: xx-large;
 }
 
 
@@ -95,6 +92,17 @@ button:hover {
   flex-direction: row;
 }
 
+.loginRow {
+  width: 80%;
+  align-items: center;
+}
+
+#loginErr {
+  visibility: hidden;
+  color: black;
+  text-shadow: 2px 2px #FF0000;
+}
+
 .tripCard {
   display: flex;
   padding: 15px;
@@ -105,25 +113,27 @@ button:hover {
   font-size: large;
 }
 
-.upcomingTrips, .pastTrips {
+.upcomingTrips,
+.pastTrips {
   border: 2px solid black;
-  width: 40% ;
+  width: 40%;
   font-size: 40px;
   overflow: auto;
   background-color: rgba(216, 212, 212, 0.6);
   border-radius: 30px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.upcomingTrips > h4, .pastTrips > h4 {
+.upcomingTrips>h4,
+.pastTrips>h4 {
   text-align: center;
   font-size: xx-large;
-  
+
 }
 
 /* book trip form*/
 .dataEntry {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
@@ -139,11 +149,27 @@ button:hover {
   border-radius: 30px;
   background-color: rgb(250, 250, 250, .8);
   font-size: 30px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
-.dataEntry input, .dataEntry button{
+#loginForm * {
+  margin-bottom: 10px;
+
+}
+
+#loginForm {
+  background-color: rgba(154, 166, 164, 0.8);
+}
+
+.small {
+  width: 25%;
+}
+
+
+
+.dataEntry input,
+.dataEntry button {
   font-size: 20px;
 }
 
@@ -154,9 +180,7 @@ button:hover {
 
 /* confirm form */
 
-#confirmTripForm, #addTripForm {
+#confirmTripForm,
+#addTripForm, dashboard {
   visibility: hidden;
 }
-
-
-

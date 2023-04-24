@@ -10,33 +10,30 @@ import dayjs from 'dayjs'
 
 // Query Selectors
 const welcomeUserDisplay = document.getElementById('welcome-user'),
-  totalSpentDisplay = document.getElementById('total-spent'),
-  upcomingTripsDisplay = document.getElementById('upcoming-trips'),
-  pastTripsDisplay = document.getElementById('past-trips'),
-  destinationSelector = document.querySelector('.destPicker'),
-  addTripForm = document.getElementById('addTripForm'),
-  dashboard = document.getElementById('dashboard'),
-  bookTripButton = document.querySelector('.bookTrip'),
-  confirmTripForm = document.getElementById('confirmTripForm')
-  ;
+totalSpentDisplay = document.getElementById('total-spent'),
+upcomingTripsDisplay = document.getElementById('upcoming-trips'),
+pastTripsDisplay = document.getElementById('past-trips'),
+destinationSelector = document.querySelector('.destPicker'),
+addTripForm = document.getElementById('addTripForm'),
+dashboard = document.getElementById('dashboard'),
+bookTripButton = document.querySelector('.bookTrip'),
+confirmTripForm = document.getElementById('confirmTripForm'),
+errMessage = document.getElementById('loginErr');
 
 const backToDashboard = () => {
   addTripForm.style.visibility = "hidden";
-  dashboard.style.visibility= "visible";
-  confirmTripForm.style.visibility= "hidden";
+  dashboard.style.visibility = "visible";
+  confirmTripForm.style.visibility = "hidden";
+  document.forms.loginForm.style.visibility = "hidden";
+  errMessage.style.visibility = "hidden";
 }
 
 const addTrip = () => {
   const form = document.forms.addTripForm;
-  form.style.visibility= "hidden";
+  form.style.visibility = "hidden";
   const estimatedCost = Trip.getProposedTripCost(+form.destID.value, +form.numTravelers.value, +form.days.value)
   document.getElementById("reportEstimatedCost").innerText = formatCost(estimatedCost);
-  confirmTripForm.style.visibility= "visible";
-  // console.log(form.date.value)
-  // console.log(form.numTravelers.value)
-  // console.log(form.days.value)
-  // console.log(form.destID.value)
-  // console.log('login', form.loginID.value)
+  confirmTripForm.style.visibility = "visible";
 }
 
 const tripConfirmedHandler = () => {
@@ -49,22 +46,58 @@ const tripConfirmedHandler = () => {
     "status": "pending", // new trips are always in pending status
     "suggestedActivities": []
   })
-  addTripToDataBase(tripData);
+  tripData.date = tripData.date.replaceAll('-', '/')
+  addTripToDataBase(tripData);// check that this is what i think it is
   createTripCard(tripInstance, upcomingTripsDisplay);
-  // 2. post the trip to the backend
   backToDashboard();
-
-  var x = Trip.getProposedTripCost(+form.destID.value, +form.numTravelers.value, +form.days.value )
- console.log(x)
 }
 
-document.querySelector('.submitButton').onclick=addTrip;
-document.querySelector('.cancelButton').onclick=backToDashboard;
-document.querySelector('.yesButton').onclick=tripConfirmedHandler;
-document.querySelector('.noButton').onclick=backToDashboard;
+const verifyLogin = () => {
+  const form = document.forms.loginForm
+  const userName = form.user.value
+  const password = form.passwd.value
+  
+  if(password !== 'travel') {
+    errMessage.style.visibility = 'visible'
+    return
+  }
+
+  if(userName.match(/^traveler\d+$/)){
+    const travelerID = +userName.slice(8);
+    const traveler = Traveler.getTravelerByID(travelerID);
+    if(traveler !== undefined) {
+      drivePage(traveler);
+      backToDashboard();
+      return;
+    }
+  } 
+  errMessage.style.visibility = 'visible'
+
+
+  
+  
+
+  // get form values
+  //check that username is travelerXX XX=travelerID and verify that is a vaild id
+  // call drive   drivePage(Traveler.getTravelerByID(+XX))
+  // st
+  //if that is true then check if password === travel
+}
+const hideErrorMessage = () => errMessage.style.visibility = "hidden";
+
+document.querySelector('.submitButton').onclick = addTrip;
+document.querySelector('.cancelButton').onclick = backToDashboard;
+document.querySelector('.yesButton').onclick = tripConfirmedHandler;
+document.querySelector('.noButton').onclick = backToDashboard;
+document.querySelector('.loginButton').onclick = verifyLogin;
+document.querySelectorAll('#loginForm input').forEach((elem) => 
+elem.onclick = hideErrorMessage)
+
+
+
 bookTripButton.onclick = () => {
   addTripForm.style.visibility = "visible";
-  dashboard.style.visibility= "hidden";
+  dashboard.style.visibility = "hidden";
 };
 const formatToCurrency = (amount) => {
   return (amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -109,10 +142,10 @@ const drivePage = (loginTraveler) => {
   )
     .forEach(trip => createTripCard(trip, upcomingTripsDisplay))
 
-    travelerTrips.filter(
-      (trip) => !trip.isPending()
-    )
-      .forEach(trip => createTripCard(trip, pastTripsDisplay))
+  travelerTrips.filter(
+    (trip) => !trip.isPending()
+  )
+    .forEach(trip => createTripCard(trip, pastTripsDisplay))
 
   Destination.allDestinations.forEach(destination => {
     const option = document.createElement('option');
@@ -140,7 +173,7 @@ fetches.then(([travelerData, tripData, destinationData]) => {
     new Destination(aDestination))
 
   // drivePage(Traveler.getRandomTraveler())
-  drivePage(Traveler.getTravelerByID(38))
+  
 })
 
 
