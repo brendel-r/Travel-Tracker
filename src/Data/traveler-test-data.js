@@ -1,4 +1,5 @@
- [
+export default { 
+  travelerTestData: [
   {
     "id": 1,
     "name": "Ham Leadbeater",
@@ -40,5 +41,5 @@
     "name": "Rickie Jodlowski",
     "travelerType": "relaxer",
   }
-]
-}
+  ]
+};
