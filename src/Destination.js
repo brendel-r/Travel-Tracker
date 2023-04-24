@@ -1,11 +1,46 @@
 class Destination {
-  constructor({id, destination, costPerDay, estimatedLodgingCostPerDay, estimatedFlightCostPerPerson}) {
+  static allDestinations= [];
+  constructor({id, destination, estimatedLodgingCostPerDay, estimatedFlightCostPerPerson,image, alt}) {
     this.id = id;
     this.destination = destination;
-    this.costPerDay = costPerDay;
     this.estimatedLodgingCostPerDay = estimatedLodgingCostPerDay;
     this.estimatedFlightCostPerPerson = estimatedFlightCostPerPerson;
+    this.image = image;
+    this.alt = alt;
+
+    Destination.allDestinations.push(this);
   };
+
+  static getDestinationByID(id) {
+    return Destination.allDestinations.find(d => d.getID() === id);
+  };
+  
+  getID() {
+    return this.id;
+  };
+
+  getDestination() {
+    return this.destination;
+  }
+
+  getImage(){
+    return this.image;
+  }
+
+  getAlt(){
+    return this.alt;
+  }
+  
+
+  
+  getEstimatedFlightCostPerPerson(){
+    return this.estimatedFlightCostPerPerson;
+  };
+
+  getEstimatedLodgingCostPerDay(){
+    return this.estimatedLodgingCostPerDay;
+  };
+  
 };
 
 

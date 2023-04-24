@@ -8,21 +8,20 @@
 </head>
 <body>
   <header>
-    <img class="headerLogo" src="./images/travel-wizard.png" alt="Travel Wizard Logo">
+    <img class="headerLogo" src="./images/travel-wizard.png" alt="Travel Wizard Logo" tabindex="0">
     <div class="userInfo">
-      <h1 class="welcomeUserMessge">welcome user message</h1>
-      <h2 class="totalMoneySpentDisplay">total $$ spent + 10%</h2>
+      <h1 class="welcomeUserDisplay" id="welcome-user" tabindex="0">Welcome User!</h1>
+      <h2 class="totalMoneySpentDisplay" tabindex="0">Your Total Spent: $<span id="total-spent"></span></h2>
     </div>
   </header>
   <article class="userTrips">
-    <p class="upcomingTrips">upcoming trips go here</p>
-    <p class="pastTrips">past trips go here</p>
+    <div class="upcomingTrips" id="upcoming-trips" tabindex="0">
+      <h4> Pending Trips</h4>
+    </div>
+    <div class="pastTrips" id="past-trips" tabindex="0">
+      <h4> Past Trips</h4>
+    </div>
   </article>
-  <form>
-    Number of Travelers <br>
-    <input type="number">
-    
-  </form>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

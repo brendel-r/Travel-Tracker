@@ -1,8 +1,9 @@
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import Destination from './Destination';
 
 class Trip {
   static allTrips = [];
-  constructor({id, userID, destinationID, travelers, date, duration, status}) {
+  constructor({ id, userID, destinationID, travelers, date, duration, status }) {
     this.id = id;
     this.userID = userID;
     this.destinationID = destinationID;
@@ -10,34 +11,67 @@ class Trip {
     this.date = date;
     this.duration = duration;
     this.status = status;
-    
+
     Trip.allTrips.push(this);
   };
 
-  // Method to get all trips
-getAllTrips() {
-  return Trip.allTrips;
-};
+  getID(){
+    return this.id;
+  }
+  getAllTrips() {
+    return Trip.allTrips;
+  };
 
-getUserID() { 
-  return this.userID;
-}
+  getDestinationID() {
+    return this.destinationID;
+  };
+
+  getTravelers() {
+    return this.travelers;
+  };
+
+  getDuration() {
+    return this.duration;
+  };
+
+  getDate() {
+    return this.date;
+  }
+
+  getUserID() {
+    return this.userID;
+  };
+
+  isApproved() {
+    return this.status === 'approved';
+  };
+
+  isPending() {
+    return this.status === 'pending';
+  };
 
 
-static getTravelerTrips(userID) {
-  debugger
-  const results = Trip.allTrips.filter(trip => trip.getUserID() === userID)
-  console.log(results)
-  results.forEach(trip => {
-    console.log(trip)
-    this.upcoming = dayjs(trip.date).isAfter(dayjs());
-    console.log(this.upcoming)
-  })
-  return results
-};
+  static getTravelerTrips(userID) {
+    const results = Trip.allTrips.filter(trip => trip.getUserID() === userID)
+    results.forEach(trip => {
+      if (this?.upcoming === undefined) {
+        this.upcoming = dayjs(trip.date).isAfter(dayjs());
+      }
+    })
+    return results
+  };
+  
+  // Method to get the total cost of the trip
+  getSingleTripCost() {
+  
+    const dest = Destination.getDestinationByID(this.getDestinationID());
+    const travelerCount = this.getTravelers();
+    const duration = this.getDuration();
 
-
-
+    //calculates single trip cost and adds 10%
+    return (dest.getEstimatedFlightCostPerPerson() * travelerCount +
+      dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
+  }
 };
 
 export default Trip;
