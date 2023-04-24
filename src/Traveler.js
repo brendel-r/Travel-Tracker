@@ -25,14 +25,14 @@ class Traveler {
   getTotalCost() {
     return Trip.getTravelerTrips(this.getID()).filter(
       trip => trip.isApproved()).reduce((acc, currentTrip) =>
-      (acc + currentTrip.getSingleTripCost()), 0)
+        (acc + currentTrip.getSingleTripCost()), 0)
   };
 
   static getRandomTraveler() {
     return Traveler.allTravelers[Math.trunc(Math.random() * Traveler.allTravelers.length)]
   }
 
-  //using for debugging
+
   static getTravelerByID(userID) {
     return Traveler.allTravelers.find(traveler => {
       return traveler.getID() === userID;
