@@ -67,18 +67,21 @@ const createTripCard = (trip, targetDisplay) => {
   const image = destination.getImage();
   const alt = destination.getAlt();
 
-  const tripDate = dayjs(trip.getDate()).format('ddd, DD MMM YYYY');
+  const tripDate = dayjs(trip.getDate()).format('ddd, MM/DD/YYYY');
   const duration = trip.getDuration();
   const travelerCount = trip.getTravelers();
 
   const html = `<div class="tripCard">
-  <div class="cardRow">
-  <img class="tripImage" width='180px' src=${image} alt=${alt}>
-  <h3>${destinationName}</h3>
-  </div>
-  <p>Your trip started on ${tripDate} / Your trip lasted ${duration} days.</p>
-  <p>You had ${travelerCount} traveler(s).</p>  
-</div>`
+    <div class="cardRow">
+      <img class="tripImage" width='180px' src=${image} alt=${alt}>
+    </div>
+    <div class="cardRowInfo">
+    <h3>${destinationName}</h3>
+    <p>Your trip started on ${tripDate}.</p>
+    <p>Your trip lasted ${duration} days.</p>
+    <p>You had ${travelerCount} traveler(s).</p>  
+    </div>
+  </div>`
   targetDisplay.innerHTML += html;
 }
 
