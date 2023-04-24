@@ -23,6 +23,8 @@ class Destination {
     return this.destination;
   }
 
+  
+
   getImage(){
     return this.image;
   }

@@ -7,8 +7,10 @@
   <title>Travel Wizard</title>
 </head>
 <body>
+  <dashboard id="dashboard">
   <header>
     <img class="headerLogo" src="./images/travel-wizard.png" alt="Travel Wizard Logo" tabindex="0">
+    <button class="bookTrip"><span>Book A Trip</span></button>
     <div class="userInfo">
       <h1 class="welcomeUserDisplay" id="welcome-user" tabindex="0">Welcome User!</h1>
       <h2 class="totalMoneySpentDisplay" tabindex="0">Your Total Spent: $<span id="total-spent"></span></h2>
@@ -22,6 +24,25 @@
       <h4> Past Trips</h4>
     </div>
   </article>
+  </dashboard>
+  <tripform>
+    <form class="dataEntry" id="addTripForm" onsubmit="return false;">
+      <h1>Let's Plan Your Trip!</h1>
+      <input name="loginID" id="loginID" value="" hidden>
+      <label> Start Date
+        <input type="date" name="date" required></label>
+      <label> Number of Days
+        <input type="number" name="days" required min="1"></label>
+      <label> Number of Travelers
+        <input type="number" name="numTravelers" required min="1"></label>
+      <label> Destination
+        <select class="destPicker" name="destID"required>
+          <option value=""></option>
+        </select>
+      </label>
+      <button class="submitButton" type="submit">Submit</button>
+    </form>
+  </tripform>
   
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>

@@ -11,11 +11,49 @@ import dayjs from 'dayjs'
 const welcomeUserDisplay = document.getElementById('welcome-user'),
   totalSpentDisplay = document.getElementById('total-spent'),
   upcomingTripsDisplay = document.getElementById('upcoming-trips'),
-  pastTripsDisplay = document.getElementById('past-trips');
+  pastTripsDisplay = document.getElementById('past-trips'),
+  destinationSelector = document.querySelector('.destPicker'),
+  addTripForm = document.getElementById('addTripForm'),
+  dashboard = document.getElementById('dashboard'),
+  bookTripButton = document.querySelector('.bookTrip');
 
 
-//
-function formatToCurrency(amount) {
+
+const addTrip = () => {
+  const form = document.forms.addTripForm;
+  // console.log(form.date.value)
+  // console.log(form.numTravelers.value)
+  // console.log(form.days.value)
+  // console.log(form.destID.value)
+  // console.log('login', form.loginID.value)
+  
+  //new trip instance to class Trip with unused ID
+  const trip = Trip.addATrip({
+    "userID": +form.loginID.value,
+    "destinationID": +form.destID.value,
+    "travelers": +form.numTravelers.value,
+    "date": form.date.value,
+    "duration": +form.days.value,
+    "status": "pending",
+    "suggestedActivities": []
+  })
+  createTripCard(trip, upcomingTripsDisplay);
+  addTripForm.style.visibility = "hidden";
+  dashboard.style.visibility= "visible";
+  
+  
+  var x = Trip.getProposedTripCost(+form.destID.value, +form.numTravelers.value, +form.days.value )
+ console.log(x)
+  // 2. post the trip to the backend
+  // 0.  approve trip yes/no
+}
+
+document.querySelector('.submitButton').onclick=addTrip;
+bookTripButton.onclick = () => {
+  addTripForm.style.visibility = "visible";
+  dashboard.style.visibility= "hidden";
+};
+const formatToCurrency = (amount) => {
   return (amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 const formatCost = (num) => {
@@ -43,11 +81,13 @@ const createTripCard = (trip, targetDisplay) => {
 </div>`
   targetDisplay.innerHTML += html;
 }
-const drivePage = (loginTraveler) => {
-  welcomeUserDisplay.innerText = `Welcome ${loginTraveler.getName()}!`;
-  totalSpentDisplay.innerText = formatCost(loginTraveler.getTotalCost());
 
-  const travelerTrips = Trip.getTravelerTrips(loginTraveler.getID());
+const drivePage = (loginTraveler) => {
+  welcomeUserDisplay.innerText = `Welcome, ${loginTraveler.getName()}!`;
+  totalSpentDisplay.innerText = formatCost(loginTraveler.getTotalCost());
+  const loginUserID = loginTraveler.getID();
+  document.getElementById('loginID').value = loginUserID;
+  const travelerTrips = Trip.getTravelerTrips(loginUserID);
   travelerTrips.filter(
     (trip) => trip.isPending()
   )
@@ -57,8 +97,13 @@ const drivePage = (loginTraveler) => {
       (trip) => !trip.isPending()
     )
       .forEach(trip => createTripCard(trip, pastTripsDisplay))
-  
 
+  Destination.allDestinations.forEach(destination => {
+    const option = document.createElement('option');
+    option.value = destination.getID();
+    option.innerText = destination.getDestination();
+    destinationSelector.appendChild(option)
+  })
 }
 
 
@@ -72,8 +117,9 @@ fetches.then(([travelerData, tripData, destinationData]) => {
     new Traveler(aTraveler)
   })
 
-
-
+  destinationData.destinations.sort((a, b) => {
+    return a.destination.localeCompare(b.destination)
+  })
   destinationData.destinations.forEach(aDestination =>
     new Destination(aDestination))
 

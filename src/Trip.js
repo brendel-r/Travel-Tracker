@@ -51,6 +51,18 @@ class Trip {
   };
 
 
+ static addATrip(tripData) {
+  // adds id to new trip 1 more than max id found
+  tripData.id = Trip.allTrips.reduce((acc, currentTrip) => {
+    if (acc < currentTrip.getID()) {
+      acc = currentTrip.getID();
+    }
+    return acc
+  }, -1) + 1;
+  return new Trip(tripData)
+  }
+
+
   static getTravelerTrips(userID) {
     const results = Trip.allTrips.filter(trip => trip.getUserID() === userID)
     results.forEach(trip => {
@@ -61,6 +73,10 @@ class Trip {
     return results
   };
   
+  static calcTripCost = (dest, travelerCount, duration) => {
+    return (dest.getEstimatedFlightCostPerPerson() * travelerCount +
+    dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
+  }
   // Method to get the total cost of the trip
   getSingleTripCost() {
   
@@ -69,8 +85,16 @@ class Trip {
     const duration = this.getDuration();
 
     //calculates single trip cost and adds 10%
-    return (dest.getEstimatedFlightCostPerPerson() * travelerCount +
-      dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
+    return Trip.calcTripCost(dest, travelerCount, duration);
+  }
+
+  static getProposedTripCost(destinationID, travelerCount, duration) {
+  
+    const dest = Destination.getDestinationByID(destinationID);
+
+    //calculates single trip cost and adds 10%
+    return Trip.calcTripCost(dest, travelerCount, duration);
+
   }
 };
 
