@@ -99,6 +99,8 @@ button:hover {
 
 #loginErr {
   visibility: hidden;
+  color: black;
+  text-shadow: 2px 2px #FF0000;
 }
 
 .tripCard {

@@ -1,6 +1,4 @@
-let x = "traveler22"
+const dayjs = require ("dayjs");
 
-console.log(x.match(/^traveler\d+$/))
-
-let num = +x.slice(8)
-console.log(num)
+console.log(dayjs('2022/02/06'))
+console.log(dayjs('2022-02-06'))

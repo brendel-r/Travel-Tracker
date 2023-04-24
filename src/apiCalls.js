@@ -39,7 +39,7 @@ export const addTripToDataBase = (tripData) => {
         console.log(res)
         throw new Error('Something went wrong!')
       }
-      console.log(res.json())
+      // console.log(res.json())
       return res.json()
     })
 };
