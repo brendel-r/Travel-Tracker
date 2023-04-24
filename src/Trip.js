@@ -59,7 +59,7 @@ class Trip {
     }
     return acc
   }, -1) + 1;
-  return new Trip(tripData)
+  return [new Trip(tripData), tripData]
   }
 
 

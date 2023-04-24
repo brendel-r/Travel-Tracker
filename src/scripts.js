@@ -1,10 +1,11 @@
-import { fetchAllData } from '../src/apiCalls';
+import { fetchAllData, addTripToDataBase } from '../src/apiCalls';
 import './css/styles.css';
 import './images/travel-wizard.png'
 import Traveler from './Traveler'
 import Destination from './Destination'
 import Trip from './Trip'
 import dayjs from 'dayjs'
+
 
 
 // Query Selectors
@@ -15,40 +16,52 @@ const welcomeUserDisplay = document.getElementById('welcome-user'),
   destinationSelector = document.querySelector('.destPicker'),
   addTripForm = document.getElementById('addTripForm'),
   dashboard = document.getElementById('dashboard'),
-  bookTripButton = document.querySelector('.bookTrip');
+  bookTripButton = document.querySelector('.bookTrip'),
+  confirmTripForm = document.getElementById('confirmTripForm')
+  ;
 
-
+const backToDashboard = () => {
+  addTripForm.style.visibility = "hidden";
+  dashboard.style.visibility= "visible";
+  confirmTripForm.style.visibility= "hidden";
+}
 
 const addTrip = () => {
   const form = document.forms.addTripForm;
+  form.style.visibility= "hidden";
+  const estimatedCost = Trip.getProposedTripCost(+form.destID.value, +form.numTravelers.value, +form.days.value)
+  document.getElementById("reportEstimatedCost").innerText = formatCost(estimatedCost);
+  confirmTripForm.style.visibility= "visible";
   // console.log(form.date.value)
   // console.log(form.numTravelers.value)
   // console.log(form.days.value)
   // console.log(form.destID.value)
   // console.log('login', form.loginID.value)
-  
-  //new trip instance to class Trip with unused ID
-  const trip = Trip.addATrip({
-    "userID": +form.loginID.value,
-    "destinationID": +form.destID.value,
-    "travelers": +form.numTravelers.value,
-    "date": form.date.value,
-    "duration": +form.days.value,
-    "status": "pending",
+}
+
+const tripConfirmedHandler = () => {
+  const [tripInstance, tripData] = Trip.addATrip({
+    "userID": +addTripForm.loginID.value,
+    "destinationID": +addTripForm.destID.value,
+    "travelers": +addTripForm.numTravelers.value,
+    "date": addTripForm.date.value,
+    "duration": +addTripForm.days.value,
+    "status": "pending", // new trips are always in pending status
     "suggestedActivities": []
   })
-  createTripCard(trip, upcomingTripsDisplay);
-  addTripForm.style.visibility = "hidden";
-  dashboard.style.visibility= "visible";
-  
-  
+  addTripToDataBase(tripData);
+  createTripCard(tripInstance, upcomingTripsDisplay);
+  // 2. post the trip to the backend
+  backToDashboard();
+
   var x = Trip.getProposedTripCost(+form.destID.value, +form.numTravelers.value, +form.days.value )
  console.log(x)
-  // 2. post the trip to the backend
-  // 0.  approve trip yes/no
 }
 
 document.querySelector('.submitButton').onclick=addTrip;
+document.querySelector('.cancelButton').onclick=backToDashboard;
+document.querySelector('.yesButton').onclick=tripConfirmedHandler;
+document.querySelector('.noButton').onclick=backToDashboard;
 bookTripButton.onclick = () => {
   addTripForm.style.visibility = "visible";
   dashboard.style.visibility= "hidden";
@@ -77,9 +90,9 @@ const createTripCard = (trip, targetDisplay) => {
     </div>
     <div class="cardRowInfo">
     <h3>${destinationName}</h3>
-    <p>Your trip started on ${tripDate}.</p>
-    <p>Your trip lasted ${duration} days.</p>
-    <p>You had ${travelerCount} traveler(s).</p>  
+    <p>Your trip start date is ${tripDate}.</p>
+    <p>Your trip duration is ${duration} days.</p>
+    <p>${travelerCount} traveler(s).</p>  
     </div>
   </div>`
   targetDisplay.innerHTML += html;
