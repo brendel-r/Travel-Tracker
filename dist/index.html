@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Wizard</title>
 </head>
-
 <body>
   <dashboard id="dashboard">
     <header>
@@ -46,6 +44,7 @@
         <button class="submitButton" type="submit">Submit</button>
         <button class="cancelButton" type="submit">Cancel</button>
       </div>
+      <h6 class="loginErr" id="tripErrorMessage">All trip details are required.</h6>
     </form>
     <form class="dataEntry" id="confirmTripForm" onsubmit="return false;">
       <h1>Do you confirm this trip?</h1>
@@ -59,21 +58,17 @@
     </form>
     <form class="dataEntry" id="loginForm" onsubmit="return false;">
       <div class="row loginRow">
-      <img class="loginLogo small" src="./images/travel-wizard.png" alt="Travel Wizard Logo" tabindex="0">
-      <h2>
-        Travel Wizard
-      </h2>
-    </div>
-        <input id="loginUser" type="text" name="user" required placeholder="User Name">
-        <input id="loginPassword" type="password" name="passwd" required placeholder="Password">
-        <button class="loginButton" type="submit">Login</button>
-        <h4 id="loginErr">User Name or Password is invalid!</h4>
+        <img class="loginLogo small" src="./images/travel-wizard.png" alt="Travel Wizard Logo" tabindex="0">
+        <h2>
+          Travel Wizard
+        </h2>
+      </div>
+      <input id="loginUser" type="text" name="user" required placeholder="User Name">
+      <input id="loginPassword" type="password" name="passwd" required placeholder="Password">
+      <button class="loginButton" type="submit">Login</button>
+      <h4 class="loginErr" id="loginError">User Name or Password is invalid!</h4>
     </form>
   </tripform>
-
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
-
 </html>

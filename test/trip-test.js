@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import Trip from '../src/Trip';
-// import Destination from '../src/Destination';
 
 describe('Trip', () => {
 

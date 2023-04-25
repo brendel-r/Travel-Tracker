@@ -11,10 +11,12 @@ class Destination {
     Destination.allDestinations.push(this);
   };
 
+  //find and individual destination instance by ID
   static getDestinationByID(id) {
     return Destination.allDestinations.find(d => d.getID() === id);
   };
 
+//getters
   getID() {
     return this.id;
   };
@@ -30,8 +32,6 @@ class Destination {
   getAlt() {
     return this.alt;
   }
-
-
 
   getEstimatedFlightCostPerPerson() {
     return this.estimatedFlightCostPerPerson;

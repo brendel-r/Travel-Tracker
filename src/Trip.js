@@ -15,9 +15,12 @@ class Trip {
     Trip.allTrips.push(this);
   };
 
+  //getters
   getID() {
     return this.id;
-  }
+  };
+
+  //returns static array for the Trip class
   getAllTrips() {
     return Trip.allTrips;
   };
@@ -42,16 +45,31 @@ class Trip {
     return this.userID;
   };
 
+  //boolean for approved status
   isApproved() {
     return this.status === 'approved';
   };
 
+   //boolean for pending status
   isPending() {
     return this.status === 'pending';
   };
 
+  
+  
+  //calculates single trip cost and adds 10%
+  getSingleTripCost() {
+    //sets up vairables to use in the static calcTripCost function
+    const dest = Destination.getDestinationByID(this.getDestinationID());
+    const travelerCount = this.getTravelers();
+    const duration = this.getDuration();
+
+    return Trip.calcTripCost(dest, travelerCount, duration);
+  };
 
   static addATrip(tripData) {
+    // finds the largest id among all trips, add 1, 
+    //then add as property to tripData
     // adds id to new trip 1 more than max id found
     tripData.id = Trip.allTrips.reduce((acc, currentTrip) => {
       if (acc < currentTrip.getID()) {
@@ -59,13 +77,15 @@ class Trip {
       }
       return acc
     }, -1) + 1;
+    //returns array of new instance and the trip data used to create it
     return [new Trip(tripData), tripData]
   }
 
-
+//gets all trips for given user
   static getTravelerTrips(userID) {
     const results = Trip.allTrips.filter(trip => trip.getUserID() === userID)
     results.forEach(trip => {
+      //assigns the upcoming attribute if it is not already assigned
       if (this?.upcoming === undefined) {
         this.upcoming = dayjs(trip.date).isAfter(dayjs());
       }
@@ -73,21 +93,13 @@ class Trip {
     return results
   };
 
+  // Method to get the total cost of a trip + 10%
   static calcTripCost = (dest, travelerCount, duration) => {
     return (dest.getEstimatedFlightCostPerPerson() * travelerCount +
       dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
   }
-  // Method to get the total cost of the trip
-  getSingleTripCost() {
-
-    const dest = Destination.getDestinationByID(this.getDestinationID());
-    const travelerCount = this.getTravelers();
-    const duration = this.getDuration();
-
-    //calculates single trip cost and adds 10%
-    return Trip.calcTripCost(dest, travelerCount, duration);
-  }
-
+ 
+// gets the proposed trip cost given the destinationID
   static getProposedTripCost(destinationID, travelerCount, duration) {
 
     const dest = Destination.getDestinationByID(destinationID);
