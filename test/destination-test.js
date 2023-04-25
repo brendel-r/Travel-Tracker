@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Destination from '../src/Destination';
+
 describe('Destination', () => {
   const sampleDestination = new Destination({
     id: 1,

@@ -23,15 +23,15 @@ class Destination {
 
   getDestination() {
     return this.destination;
-  }
+  };
   
   getImage() {
     return this.image;
-  }
+  };
 
   getAlt() {
     return this.alt;
-  }
+  };
 
   getEstimatedFlightCostPerPerson() {
     return this.estimatedFlightCostPerPerson;
@@ -40,8 +40,5 @@ class Destination {
   getEstimatedLodgingCostPerDay() {
     return this.estimatedLodgingCostPerDay;
   };
-
 };
-
-
 export default Destination;

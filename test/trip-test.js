@@ -111,17 +111,31 @@ describe('Trip', () => {
     expect(trip.isPending()).to.be.false;
   });
 
+  it('should return all trips', () => {
+  const allTrips = Trip.allTrips = [];
+  const trip1 = new Trip({
+      id: 1,
+      userID: 1,
+      destinationID: 1,
+      travelers: 1,
+      date: '2023-05-01',
+      duration: 5,
+      status: 'approved'
+    });
+    const trip2 = new Trip({
+      id: 2,
+      userID: 2,
+      destinationID: 2,
+      travelers: 2,
+      date: '2023-06-01',
+      duration: 7,
+      status: 'pending'
+    });
 
-  // Test the getAllTrips() function
-  it('should return an array of all trips', () => {
-    const trip1 = new Trip({ destinationID: 1 })
-    const trip2 = new Trip({ destinationID: 2 })
-    const allTrips = [trip1, trip2]
-    const trips = Trip.getAllTrips();
-    console.log('getAllTrips function')
-    expect(trips).to.be.an('array');
-    expect(trips).to.include(trip1);
-    expect(trips).to.include(trip2);
+    const result = trip1.getAllTrips();
+
+    expect(result).to.be.an('array');
+    expect(result).to.deep.include(trip1);
+    expect(result).to.deep.include(trip2);
   });
-
-})
+});

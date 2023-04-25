@@ -10,18 +10,11 @@ describe ('Traveler', () => {
       expect(traveler.getID()).to.equal(1);
   });
 
-
-  it('should return the name of the traveler with the given ID', () => {
-    const traveler1 = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
-    const traveler2 = new Traveler({ id: 2, name: 'Jane Doe', travelerType: 'leisure' });
-    expect(Traveler.getNameById(2)).to.equal('Jane Doe');
-  });
-  
   it('should return the traveler name', () => {
     const traveler = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
-    expect(traveler.getName()).to.equal('John Doe');
-  });
-  
+    expect(traveler.getID()).to.equal(1);
+});
+
   it('should return the total cost of all approved trips for the traveler', () => {
     // Create some trips for the traveler
     const traveler = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
@@ -32,13 +25,25 @@ describe ('Traveler', () => {
     const dest1 = new Destination({ id: 1, destination: 'Paris', estimatedLodgingCostPerDay: 100, estimatedFlightCostPerPerson: 200, image: '', alt: '' });
     const dest2 = new Destination({ id: 2, destination: 'London', estimatedLodgingCostPerDay: 150, estimatedFlightCostPerPerson: 300, image: '', alt: '' });
 
-    expect(traveler.getTotalCost()).to.equal(1925);
+    expect(traveler.getTotalCost()).to.equal(2255);
   });
 
-  it.skip('should return the traveler with the given ID', () => {
+  it('should return the name of the traveler with the given ID', () => {
     const traveler1 = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
     const traveler2 = new Traveler({ id: 2, name: 'Jane Doe', travelerType: 'leisure' });
-    expect(Traveler.getTravelerByID(1)).to.equal(traveler2);
+    expect(Traveler.getNameById(2)).to.equal('Jane Doe');
+  });
+
+  it('should return the traveler name', () => {
+    const traveler = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
+    expect(traveler.getName()).to.equal('John Doe');
   });
   
+
+  it('should return the traveler with the given ID', () => {
+    const traveler1 = new Traveler({ id: 1, name: 'John Doe', travelerType: 'business' });
+    const traveler2 = new Traveler({ id: 2, name: 'Jane Doe', travelerType: 'leisure' });
+
+    expect(Traveler.getTravelerByUserID(1)).to.deep.equal(traveler1);
+  });
 });

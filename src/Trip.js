@@ -11,6 +11,7 @@ class Trip {
     this.date = date;
     this.duration = duration;
     this.status = status;
+    this.allTrips = []
 
     Trip.allTrips.push(this);
   };
@@ -39,7 +40,7 @@ class Trip {
 
   getDate() {
     return this.date;
-  }
+  };
 
   getUserID() {
     return this.userID;
@@ -55,8 +56,6 @@ class Trip {
     return this.status === 'pending';
   };
 
-  
-  
   //calculates single trip cost and adds 10%
   getSingleTripCost() {
     //sets up vairables to use in the static calcTripCost function
@@ -79,7 +78,7 @@ class Trip {
     }, -1) + 1;
     //returns array of new instance and the trip data used to create it
     return [new Trip(tripData), tripData]
-  }
+  };
 
 //gets all trips for given user
   static getTravelerTrips(userID) {
@@ -97,9 +96,9 @@ class Trip {
   static calcTripCost = (dest, travelerCount, duration) => {
     return (dest.getEstimatedFlightCostPerPerson() * travelerCount +
       dest.getEstimatedLodgingCostPerDay() * duration) * 1.1;
-  }
+  };
  
-// gets the proposed trip cost given the destinationID
+// gets the proposed trip cost given the
   static getProposedTripCost(destinationID, travelerCount, duration) {
 
     const dest = Destination.getDestinationByID(destinationID);
@@ -107,7 +106,7 @@ class Trip {
     //calculates single trip cost and adds 10%
     return Trip.calcTripCost(dest, travelerCount, duration);
 
-  }
+  };
 };
 
 export default Trip;

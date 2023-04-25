@@ -1,10 +1,10 @@
 import { fetchAllData, addTripToDataBase } from '../src/apiCalls';
 import './css/styles.css';
-import './images/travel-wizard.png'
-import Traveler from './Traveler'
-import Destination from './Destination'
-import Trip from './Trip'
-import dayjs from 'dayjs'
+import './images/travel-wizard.png';
+import Traveler from './Traveler';
+import Destination from './Destination';
+import Trip from './Trip';
+import dayjs from 'dayjs';
 
 
 
@@ -23,13 +23,15 @@ const welcomeUserDisplay = document.getElementById('welcome-user'),
 
 const formatToCurrency = (amount) => {
   return (amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-}
+};
+
 const formatCost = (num) => {
   num = Math.round(num, 2);
   return formatToCurrency(num)
-}
+};
 
 // controls componets
+//keeps from refreshing page
 const backToDashboard = () => {
   dashboard.style.visibility = "visible";
 
@@ -38,7 +40,7 @@ const backToDashboard = () => {
   document.forms.loginForm.style.visibility = "hidden";
   loginErrorMessage.style.visibility = "hidden";
   tripErrorMessage.style.visibility = "hidden";
-}
+};
 
 //add trip if user has submitted all data
 const addTrip = () => {
@@ -57,7 +59,7 @@ const addTrip = () => {
   document.getElementById("reportEstimatedCost").innerText = formatCost(estimatedCost);
   tripErrorMessage.style.visibility = "hidden";
   confirmTripForm.style.visibility = "visible";
-}
+};
 
 //handles trip confirmation
 const tripConfirmedHandler = () => {
@@ -78,21 +80,21 @@ const tripConfirmedHandler = () => {
   //creates card for display in dashboard
   createTripCard(tripInstance, upcomingTripsDisplay);
   backToDashboard();
-}
+};
+
 //verify login data fields
-//
 const verifyLogin = () => {
-  const form = document.forms.loginForm
-  const userName = form.user.value
-  const password = form.passwd.value
+  const form = document.forms.loginForm;
+  const userName = form.user.value;
+  const password = form.passwd.value;
 
   //check if password is correct
   if (password !== 'travel') {
     loginErrorMessage.style.visibility = 'visible'
     return
-  }
+  };
 
-  //verifys format of user name
+  //verifys format of user name includes numbers after 8 characters
   if (userName.match(/^traveler\d+$/)) {
     const travelerUserID = +userName.slice(8);
     //gets user instance from travelers from userID
@@ -102,10 +104,11 @@ const verifyLogin = () => {
       drivePage(traveler);
       backToDashboard();
       return;
-    }
-  }
-  loginErrorMessage.style.visibility = 'visible'
-}
+    };
+  };
+  loginErrorMessage.style.visibility = 'visible';
+};
+
 const hideErrorMessage = () => loginErrorMessage.style.visibility = "hidden";
 
 document.querySelector('.submitButton').onclick = addTrip;
@@ -115,14 +118,15 @@ document.querySelector('.noButton').onclick = backToDashboard;
 document.querySelector('.loginButton').onclick = verifyLogin;
 document.querySelectorAll('#loginForm input')
   .forEach((elem) => elem.onclick = hideErrorMessage);
-bookTripButton.onclick = () => {
+
+  bookTripButton.onclick = () => {
   addTripForm.style.visibility = "visible";
   dashboard.style.visibility = "hidden";
 };
 
 //displaying a trip on dashboard
 const createTripCard = (trip, targetDisplay) => {
-  const destination = Destination.getDestinationByID(trip.getDestinationID())
+  const destination = Destination.getDestinationByID(trip.getDestinationID());
 
   const destinationName = destination.getDestination();
   const image = destination.getImage();
@@ -144,7 +148,7 @@ const createTripCard = (trip, targetDisplay) => {
     </div>
   </div>`
   targetDisplay.innerHTML += html;
-}
+};
 
 //this fills in componets on the dashboard after login
 const drivePage = (loginTraveler) => {
@@ -169,8 +173,8 @@ const drivePage = (loginTraveler) => {
     option.value = destination.getID();
     option.innerText = destination.getDestination();
     destinationSelector.appendChild(option)
-  })
-}
+  });
+};
 
 // at start get all existing trips,destination, and travelers
 //add to the corresponding classes as instances
@@ -182,7 +186,7 @@ fetches.then(([travelerData, tripData, destinationData]) => {
 
   travelerData.travelers.forEach(aTraveler => {
     new Traveler(aTraveler)
-  })
+  });
 
   //sorts destinations before creating instances, so that
   //they appear in alphabetical order in dropdown
@@ -191,6 +195,5 @@ fetches.then(([travelerData, tripData, destinationData]) => {
   })
   destinationData.destinations.forEach(aDestination =>
     new Destination(aDestination))
-})
-
+});
 

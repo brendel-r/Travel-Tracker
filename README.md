@@ -1,6 +1,12 @@
 
 # Travel Wizard
 
+## Goals and Objectives
+-Use OOP to drive the design of the application and the code <br>
+-Work with an API to send and receive data<br>
+-Solidify the code review process<br>
+-Create a robust test suite that thoroughly tests all functionality of a client-side application
+
 ## Introduction
 Keeping track of past and upcoming trips and the amount of money spent can be a challenging task, especially for frequent travelers. It can be time-consuming to manually record all the details, and there is always the risk of missing important information.
 
@@ -18,7 +24,7 @@ To ensure that the application was working correctly, the Mocha and Chai testing
 Overall, the project demonstrated the benefits of using a class-driven approach to JavaScript development, and the importance of testing to ensure the correctness of the code.
 
 ## Preview
-![preview]()
+![preview](https://media.giphy.com/media/jjRP1QpbfbaWEv2ovu/giphy.gif)
   
 ## Set Up
 -Fork and clone this repo.<br>
